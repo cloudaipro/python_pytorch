@@ -8,9 +8,17 @@ if __name__ == __main__: #this test defines the test block
  ! git clone https://github.com/IsHYuhi/BEDSR-Net_A_Deep_Shadow_Removal_Network_from_a_Single_Document_Image.git
  
  
+ ! gdown https://drive.google.com/file/d/1RShxL-qcda08plhzpHJo4AWTl1UxblOY
+ 
  from google.colab import drive
 drive.mount('/content/drive')
 ! unzip -u pretrained.zip && rm pretrained.zip
 
 ! ls
 cd BEDSR-Net_A_Deep_Shadow_Removal_Network_from_a_Single_Document_Image
+
+python -W ignore foo.py
+
+How do I revert to a previous package in Anaconda?
+conda list --revisions
+conda install --revision [revision number]
