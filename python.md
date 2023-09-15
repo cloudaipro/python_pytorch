@@ -22,3 +22,21 @@ python -W ignore foo.py
 How do I revert to a previous package in Anaconda?
 conda list --revisions
 conda install --revision [revision number]
+
+python -m site
+ 
+pip3 list --user
+
+brew install python@3.8
+python3.8 -m venv coreml
+source coreml/bin/activate
+
+
+#remove all currently installed packages
+pip freeze > remove.txt
+pip uninstall -r remove.txt
+#re-insatll all packages 
+pip install -r requriement.txt
+
+pip install torch==1.8.1 torchvision==0.10.0  -f https://download.pytorch.org/whl/torch_stable.html
+pip install torchvision==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html

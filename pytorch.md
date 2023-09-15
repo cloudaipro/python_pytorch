@@ -16,6 +16,7 @@ torch.backends.mps.is_available()
 torch.device('mps')  
 
 python -c 'import torch; print(torch.cuda.is_available())'
+python -c 'import torch; print(torch.backends.mps.is_available())'
 
 conda config --describe channel_priority
 conda config --add channels conda-forge
