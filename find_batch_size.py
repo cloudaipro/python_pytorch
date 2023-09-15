@@ -144,8 +144,8 @@ def test(model: nn.Module, test_ds: DataLoader, device: torch.device):
 
 
 def main(epochs: int = 2):
-    if not torch.cuda.is_available() or not torch.backends.mps.is_available():
-        raise RuntimeError("CUDA is not available.")
+    if not torch.cuda.is_available() and not torch.backends.mps.is_available():
+        raise RuntimeError("CUDA/MPS is not available.")
       
     device = torch.device("cuda" if torch.cuda.is_available() else 'mps')
 
