@@ -7,9 +7,9 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 from torchvision.models import resnet50, ResNet50_Weights
-
-
+from time import time
 from time import sleep
+import multiprocessing as mp
 
 # dataset information
 IMAGE_SHAPE = (3, 224, 224)
@@ -143,21 +143,53 @@ def test(model: nn.Module, test_ds: DataLoader, device: torch.device):
     }
 
 
+def get_num_workers(device: torch.device, batch_size=64):
+    bestTime = 9999999.0
+    bestSetting = 0
+    for num_workers in range(2, mp.cpu_count() + 1, 2):
+        train_loader = DataLoader(datasets.FakeData(
+                                            size=DATASET_SIZE,
+                                            image_size=IMAGE_SHAPE,
+                                            num_classes=NUM_CLASSES,
+                                            transform=transforms.Compose([transforms.ToTensor()])),
+                                shuffle=True,
+                                num_workers=num_workers,
+                                batch_size=batch_size,
+                                pin_memory=True)
+        start = time()
+        for epoch in range(1, 3):
+            for i, (data, target) in enumerate(tqdm(train_loader, desc="loading")): # enumerate(train_loader, 0):
+                data = data.to(device)
+                target = target.to(device)
+        end = time()
+
+        elapsed_time = end - start
+        if elapsed_time < bestTime:
+            bestTime = elapsed_time
+            bestSetting = num_workers
+        print("Finish with:{} second, num_workers={}".format(end - start, num_workers))
+
+    print(f"The best optimized value of num_workers: {bestSetting}")
+    return bestSetting
+
 def main(epochs: int = 2):
+	
     if not torch.cuda.is_available() and not torch.backends.mps.is_available():
         raise RuntimeError("CUDA/MPS is not available.")
       
     device = torch.device("cuda" if torch.cuda.is_available() else 'mps')
 
-    batch_size = get_batch_size(
-        model=ResNet(),
-        device=device,
-        input_shape=IMAGE_SHAPE,
-        output_shape=(NUM_CLASSES,),
-        dataset_size=DATASET_SIZE,
-    )
+    # batch_size = get_batch_size(
+    #     model=ResNet(),
+    #     device=device,
+    #     input_shape=IMAGE_SHAPE,
+    #     output_shape=(NUM_CLASSES,),
+    #     dataset_size=DATASET_SIZE,
+    # )
+    batch_size = 128
+    num_workers = get_num_workers(device, batch_size)
 
-    train_ds, test_ds = get_datasets(batch_size=batch_size)
+    train_ds, test_ds = get_datasets(batch_size=batch_size, num_workers=num_workers)
     model = ResNet().to(device)
 
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
