@@ -172,16 +172,23 @@ def get_num_workers(device: torch.device, batch_size=64):
     print(f"The best optimized value of num_workers: {bestSetting}")
     return bestSetting
 
+def getModel(device):
+    model = ResNet().to(device)
+    if torch.cuda.device_count() > 1:
+        model = nn.DataParallel(model)
+    return model
+
 def main(epochs: int = 2):
 	
     if not torch.cuda.is_available() and not torch.backends.mps.is_available():
         raise RuntimeError("CUDA/MPS is not available.")
-      
+    
+    print(f"{mp.cpu_count()} cores" )
     device = torch.device("cuda" if torch.cuda.is_available() else 
                           "mps" if torch.backends.mps.is_available() else "cpu")
-
+    model = getModel(device)
     batch_size = get_batch_size(
-        model=ResNet(),
+        model,
         device=device,
         input_shape=IMAGE_SHAPE,
         output_shape=(NUM_CLASSES,),
@@ -191,8 +198,8 @@ def main(epochs: int = 2):
     num_workers = get_num_workers(device, batch_size)
 
     train_ds, test_ds = get_datasets(batch_size=batch_size, num_workers=num_workers)
-    model = ResNet().to(device)
-
+    model = model = getModel(device)
+    
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
     for epoch in range(1, epochs + 1):
