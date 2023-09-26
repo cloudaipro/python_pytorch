@@ -21,3 +21,5 @@ python -c 'import torch; print(torch.backends.mps.is_available())'
 conda config --describe channel_priority
 conda config --add channels conda-forge
 conda config --set channel_priority strict
+
+pip3 install --upgrade --no-deps --force-reinstall --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/nightly/cpu
