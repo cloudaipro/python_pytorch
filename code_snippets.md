@@ -21,7 +21,7 @@ for epoch in tqdm(range(epoch_num)):
 ```
 ## for .py
 ```python
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 for i in tqdm(range(3)):
     for j in tqdm(range(50000000), leave=False):
         pass
