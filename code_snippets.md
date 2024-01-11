@@ -4,9 +4,9 @@ if __name__ == '__main__': #this test defines the test block
   <block of statements>
 ```
 
-##Progress Bar
-# for .ipynb
-```
+# Progress Bar
+## for .ipynb
+```python
 from tqdm.notebook import tqdm
 for i in tqdm(range(3)):
     for j in tqdm(range(50000000)):
@@ -14,8 +14,13 @@ for i in tqdm(range(3)):
         # print(i," : ", j)
 print("Done!")
 ```
-# for .py
+```python
+from tqdm.notebook import tqdm
+for epoch in tqdm(range(epoch_num)):
+    for i, (x, y) in enumerate(tqdm(dl)):
 ```
+## for .py
+```python
 from tqdm.notebook import tqdm
 for i in tqdm(range(3)):
     for j in tqdm(range(50000000), leave=False):
