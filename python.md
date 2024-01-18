@@ -1,6 +1,6 @@
 **install tensorflow**
 ```
-pip install tensorflow[and-cuda]=2.13.0
+pip install "tensorflow[and-cuda]"
 ```
 
 ```
