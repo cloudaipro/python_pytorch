@@ -52,3 +52,25 @@ pip install -r requriement.txt
 pip install torch==1.8.1 torchvision==0.10.0  -f https://download.pytorch.org/whl/torch_stable.html
 pip install torchvision==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html
 ```
+**install TA-lib**
+```
+In Ubuntu 22.04 I solved this issue by following these steps below;
+
+(BTW it is also mentioned in the official page here )
+
+Download ta-lib-0.4.0-src.tar.gz and put it to the directory where you are planning to install talib, lets' say "~/talib" open bash and skip to the directory that you just put the downloaded file cd ~/talib and;
+tar -xzf ta-lib-0.4.0-src.tar.gz
+cd ta-lib/
+./configure --prefix=/usr
+make
+sudo make install
+add necessary directories to the path. To do that;
+Edit .bashrc in your home directory and add the following line: please remember to change PREFIX with your path to talib (~/talib/ta-lib/)
+
+export TA_LIBRARY_PATH=$PREFIX/lib
+
+export TA_INCLUDE_PATH=$PREFIX/include
+
+pip install TA-Lib
+Then it was installed successfully. Good luck!
+```
