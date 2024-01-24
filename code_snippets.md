@@ -26,3 +26,16 @@ for i in tqdm(range(3)):
         pass
 print("Done!")
 ```
+
+# jupyter filename programmatically
+```python
+def get_filename_of_ipynb():
+    from IPython import get_ipython
+    import os
+    ip = get_ipython()
+    path = ''
+    if '__vsc_ipynb_file__' in ip.user_ns:
+        path = ip.user_ns['__vsc_ipynb_file__']
+
+    return '.'.join(os.path.basename(path).split('.')[:-1])
+```
