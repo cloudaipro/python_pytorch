@@ -13,4 +13,9 @@ pd.options.display.float_format = '{:.2f}'.format
 ```python
 pandas.set_option('display.max_rows', None)
 ```
+or
+```python
+with pd.option_context('display.max_rows', None,):
+    print(gen_analysis_data(ticks_data[0]).head(100))
+```
 
