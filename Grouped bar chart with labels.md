@@ -43,3 +43,6 @@ plt.show()
 ```
 ![image](https://github.com/cloudaipro/python_pytorch/assets/47704397/64a26bb0-d186-450f-bb2b-c1f642732769)
 
+**Matplotlib: Double Bar Graph**
+https://sharkcoder.com/data-visualization/mpl-double-bar
+![image](https://github.com/cloudaipro/python_pytorch/assets/47704397/215f280a-1a6b-4231-bed4-df93ed470a8e)
