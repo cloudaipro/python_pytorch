@@ -8,6 +8,7 @@ pd.options.display.expand_frame_repr = False
 ```python
 pd.options.display.float_format = '{:.0f}'.format
 pd.options.display.float_format = '{:.2f}'.format
+pd.set_option("display.float_format", lambda x: f"{x:,.3f}")
 ```
 #### How to display all rows from dataframe using Pandas?
 ```python
