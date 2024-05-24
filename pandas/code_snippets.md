@@ -32,3 +32,9 @@ f1_stat = stats.xs(("best_f1", "f1"), level=["metrics", "results"], axis=1).T.lo
 ```python
 parameters_db.data.drop(["c_ER_DOWNZONE_BULL", "c_ER_DOWNZONE_BEAR"], level='signal', axis=1, inplace=True)
 ```
+
+# drop duplicate data
+```python
+index_of_unique = fbc_df.astype(str).drop_duplicates().index
+purify_fbc_df = fbc_df.loc[index_of_unique].reset_index(drop=True)
+```
