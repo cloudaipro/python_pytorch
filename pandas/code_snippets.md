@@ -27,3 +27,8 @@ f1_stat = stats.xs(("best_f1", "f1"), level=["metrics", "results"], axis=1).T.lo
     :, ["mean", "max"]
 ]
 ```
+
+# drop columns
+```python
+parameters_db.data.drop(["c_ER_DOWNZONE_BULL", "c_ER_DOWNZONE_BEAR"], level='signal', axis=1, inplace=True)
+```
