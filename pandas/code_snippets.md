@@ -38,3 +38,11 @@ parameters_db.data.drop(["c_ER_DOWNZONE_BULL", "c_ER_DOWNZONE_BEAR"], level='sig
 index_of_unique = fbc_df.astype(str).drop_duplicates().index
 purify_fbc_df = fbc_df.loc[index_of_unique].reset_index(drop=True)
 ```
+# Get the row with the maximum value by group
+```python
+best_signals_parameters_df = pd.DataFrame(columns=cleaned_signals_parameters_df.columns)
+for name, group in grouped_signals:
+    best_signals_parameters_df = best_signals_parameters_df._append(
+        group.loc[group["recall"].idxmax()]
+    )
+```
