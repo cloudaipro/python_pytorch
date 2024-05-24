@@ -19,3 +19,11 @@ level0[27] = "awesome"
 level0[28] = "squeeze"
 parameters_db.data.columns.set_levels(level0, level=0)
 ```
+
+# xs
+```python
+stats = parameters_db.data.describe()
+f1_stat = stats.xs(("best_f1", "f1"), level=["metrics", "results"], axis=1).T.loc[
+    :, ["mean", "max"]
+]
+```
