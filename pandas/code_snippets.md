@@ -46,3 +46,8 @@ for name, group in grouped_signals:
         group.loc[group["recall"].idxmax()]
     )
 ```
+
+# check if any column is na
+```python
+signals_performance[signals_performance.isna().any(axis=1)]
+```
