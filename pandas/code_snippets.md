@@ -51,3 +51,10 @@ for name, group in grouped_signals:
 ```python
 signals_performance[signals_performance.isna().any(axis=1)]
 ```
+
+# Convert index to datetime index
+```python
+signal_of_stks[symbol].index = pd.to_datetime(
+                            signal_of_stks[symbol].index
+                        )
+```
