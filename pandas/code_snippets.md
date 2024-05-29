@@ -58,3 +58,8 @@ signal_of_stks[symbol].index = pd.to_datetime(
                             signal_of_stks[symbol].index
                         )
 ```
+
+# idx contain substring
+```python
+signal_performances_by_precision[(signal_performances_by_precision.index.str.contains("c_RSX")) | (signal_performances_by_precision.index.str.contains("c_CMO"))]
+```
