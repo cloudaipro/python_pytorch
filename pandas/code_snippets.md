@@ -63,3 +63,8 @@ signal_of_stks[symbol].index = pd.to_datetime(
 ```python
 signal_performances_by_precision[(signal_performances_by_precision.index.str.contains("c_RSX")) | (signal_performances_by_precision.index.str.contains("c_CMO"))]
 ```
+
+# concat list fields
+```python
+all_signals = list(itertools.chain(*signals_performance.signals.values))
+```
