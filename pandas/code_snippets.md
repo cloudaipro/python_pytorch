@@ -68,3 +68,7 @@ signal_performances_by_precision[(signal_performances_by_precision.index.str.con
 ```python
 all_signals = list(itertools.chain(*signals_performance.signals.values))
 ```
+# Comparison between datetime and datetime64[ns] in pandas
+```python
+    short_csm_ta_data = {k: v[v.index > pd.Timestamp(six_months_ago)] for k, v in csm_ta_data.items()}
+```
