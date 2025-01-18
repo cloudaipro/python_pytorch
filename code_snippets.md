@@ -1,3 +1,9 @@
+# check if exist multiindex
+```python
+if isinstance(new_data.columns, pd.MultiIndex):
+  ...
+```
+
 ```python
 if __name__ == '__main__': #this test defines the test block  
   <block of statements>
